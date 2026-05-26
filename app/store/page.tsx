@@ -6,6 +6,7 @@ import { db } from "@/lib/firebase";
 
 export default function StorePage() {
   const [products, setProducts] = useState<any[]>([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     async function loadProducts() {
@@ -43,40 +44,54 @@ export default function StorePage() {
         المتجر
       </h1>
 
+      <input
+        type="text"
+        placeholder="ابحث عن منتج..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="w-full mb-8 p-4 rounded-xl bg-white/10 border border-white/10"
+      />
+
       <div className="grid md:grid-cols-3 gap-6">
-        {products.map((product: any) => (
-          <div
-            key={product.id}
-            className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden"
-          >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-52 object-cover"
-            />
+        {products
+          .filter((product: any) =>
+            product.name
+              ?.toLowerCase()
+              .includes(search.toLowerCase())
+          )
+          .map((product: any) => (
+            <div
+              key={product.id}
+              className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden"
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-52 object-cover"
+              />
 
-            <div className="p-5">
-              <h2 className="text-2xl font-bold">
-                {product.name}
-              </h2>
+              <div className="p-5">
+                <h2 className="text-2xl font-bold">
+                  {product.name}
+                </h2>
 
-              <p className="text-white/70 mt-2">
-                {product.description}
-              </p>
+                <p className="text-white/70 mt-2">
+                  {product.description}
+                </p>
 
-              <p className="text-3xl font-bold mt-4">
-                {product.price} DT
-              </p>
+                <p className="text-3xl font-bold mt-4">
+                  {product.price} DT
+                </p>
 
-              <button
-                onClick={() => addToCart(product)}
-                className="mt-4 w-full bg-blue-600 py-3 rounded-xl hover:bg-blue-500"
-              >
-                أضف للسلة
-              </button>
+                <button
+                  onClick={() => addToCart(product)}
+                  className="mt-4 w-full bg-blue-600 py-3 rounded-xl hover:bg-blue-500"
+                >
+                  أضف للسلة
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </main>
   );
