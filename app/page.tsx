@@ -38,7 +38,7 @@ export default function Home() {
   </h3>
 
   <p className="text-lg text-white/80">
-    1 دينار = 1 مليون كريدت بروبوت
+     هنا 1 دينار = 1 مليون كريدت بروبوت
   </p>
 </div>
           </p>
