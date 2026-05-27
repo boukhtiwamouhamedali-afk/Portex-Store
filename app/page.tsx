@@ -32,6 +32,15 @@ export default function Home() {
           <p className="text-xl opacity-90 max-w-2xl">
             متجر متخصص في الخدمات الرقمية، منتجات ديسكورد،
             إعداد السيرفرات، التصاميم والخدمات التقنية.
+<div className="mt-6 bg-black/20 border border-white/10 rounded-2xl p-5 max-w-xl">
+  <h3 className="text-2xl font-bold mb-2">
+    تحويل كريدت بروبوت
+  </h3>
+
+  <p className="text-lg text-white/80">
+    1 دينار = 1 مليون كريدت بروبوت
+  </p>
+</div>
           </p>
 
           <div className="mt-8 flex gap-4">
